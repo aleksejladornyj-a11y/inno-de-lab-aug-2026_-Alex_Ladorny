@@ -1,4 +1,3 @@
--- Создание таблиц (если не существуют)
 CREATE TABLE IF NOT EXISTS Employees (
     EmployeeID SERIAL PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
@@ -24,12 +23,10 @@ CREATE TABLE IF NOT EXISTS EmployeeProjects (
     FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
 );
 
--- Очистка таблиц (чтобы не было дублей)
 TRUNCATE TABLE EmployeeProjects RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Employees RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Projects RESTART IDENTITY CASCADE;
 
--- Вставка данных
 INSERT INTO Employees (FirstName, LastName, Department, Salary) VALUES
 ('Alice', 'Smith', 'HR', 60000.00),
 ('Bob', 'Johnson', 'IT', 75000.00),

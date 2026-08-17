@@ -10,7 +10,7 @@ UPDATE Employees
 SET Department = 'Senior IT' 
 WHERE Salary > 70000;
 
--- 3. Удалить сотрудников без проектов (не числятся в EmployeeProjects)
+-- 3. Удалить сотрудников без проектов
 DELETE FROM Employees 
 WHERE EmployeeID NOT IN (
     SELECT DISTINCT EmployeeID 

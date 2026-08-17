@@ -1,22 +1,24 @@
 -- Задание 2: DDL
 
--- 1. Создать таблицу Departments (если её нет)
+-- 1. Создать таблицу Departments
 CREATE TABLE IF NOT EXISTS Departments (
     DepartmentID SERIAL PRIMARY KEY,
     DepartmentName VARCHAR(50) UNIQUE NOT NULL,
     Location VARCHAR(50)
 );
 
--- 2. Добавить колонку Email (если её нет)
+-- 2. Переименовать колонку Location в OfficeLocation
+ALTER TABLE Departments RENAME COLUMN Location TO OfficeLocation;
+
+-- 3. Добавить колонку Email
 ALTER TABLE Employees ADD COLUMN IF NOT EXISTS Email VARCHAR(100);
 
--- 3. Заполнить Email для всех сотрудников (если ещё не заполнены)
+-- 4. Заполнить Email для всех сотрудников
 UPDATE Employees SET Email = 
     LOWER(FirstName) || '.' || LOWER(LastName) || '@company.com' 
 WHERE Email IS NULL;
 
--- 4. Добавить ограничение UNIQUE на Email (без IF NOT EXISTS, потому что не поддерживается)
--- Если ограничение уже существует, будет ошибка – её можно игнорировать, задание выполнено.
+-- 5. Добавить ограничение UNIQUE на Email
 ALTER TABLE Employees ADD CONSTRAINT unique_email UNIQUE (Email);
 
 -- Проверка
