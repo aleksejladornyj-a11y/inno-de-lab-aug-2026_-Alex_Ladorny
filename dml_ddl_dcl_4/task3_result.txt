@@ -1,0 +1,7 @@
+DO
+GRANT
+ grantee | privilege_type 
+---------+----------------
+ hr_user | SELECT
+(1 row)
+

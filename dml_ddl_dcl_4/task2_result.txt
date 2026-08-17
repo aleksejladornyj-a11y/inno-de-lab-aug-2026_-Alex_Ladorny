@@ -1,0 +1,17 @@
+CREATE TABLE
+ALTER TABLE
+UPDATE 0
+ departmentid | departmentname | officelocation 
+--------------+----------------+----------------
+(0 rows)
+
+ employeeid | firstname | lastname |           email            
+------------+-----------+----------+----------------------------
+          2 | Bob       | Johnson  | bob.johnson@company.com
+          3 | Charlie   | Brown    | charlie.brown@company.com
+          4 | Diana     | Prince   | diana.prince@company.com
+          6 | Ivan      | Petrov   | ivan.petrov@company.com
+          7 | Maria     | Sidorova | maria.sidorova@company.com
+          1 | Alice     | Smith    | alice.smith@company.com
+(6 rows)
+

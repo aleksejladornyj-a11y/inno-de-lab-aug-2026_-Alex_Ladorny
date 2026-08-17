@@ -1,0 +1,30 @@
+INSERT 0 2
+ employeeid | firstname | lastname | department |  salary  
+------------+-----------+----------+------------+----------
+          1 | Alice     | Smith    | HR         | 60000.00
+          2 | Bob       | Johnson  | IT         | 75000.00
+          3 | Charlie   | Brown    | Finance    | 62000.00
+          4 | Diana     | Prince   | IT         | 80000.00
+          5 | Eve       | Davis    | HR         | 58000.00
+          6 | Ivan      | Petrov   | HR         | 55000.00
+          7 | Maria     | Sidorova | Finance    | 62000.00
+(7 rows)
+
+ firstname | lastname 
+-----------+----------
+ Bob       | Johnson
+ Diana     | Prince
+(2 rows)
+
+UPDATE 1
+DELETE 1
+ employeeid | firstname | lastname | department |  salary  
+------------+-----------+----------+------------+----------
+          2 | Bob       | Johnson  | IT         | 75000.00
+          3 | Charlie   | Brown    | Finance    | 62000.00
+          4 | Diana     | Prince   | IT         | 80000.00
+          6 | Ivan      | Petrov   | HR         | 55000.00
+          7 | Maria     | Sidorova | Finance    | 62000.00
+          1 | Alice     | Smith    | HR         | 65000.00
+(6 rows)
+
