@@ -16,7 +16,7 @@ GRANT SELECT ON Employees TO hr_user;
 GRANT INSERT, UPDATE ON Employees TO hr_user;
 
 -- 4. Дать права на все последовательности
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO hr_user;
+GRANT USAGE ON SEQUENCE employees_employeeid_seq TO hr_user;
 
 -- 5. Проверить права
 SELECT grantee, privilege_type 
