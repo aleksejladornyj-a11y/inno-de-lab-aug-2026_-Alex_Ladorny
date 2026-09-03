@@ -6,7 +6,7 @@ RETURNS NUMERIC
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    RETURN emp_salary * 0.10;
+    RETURN salary * 0.10;
 END;
 $$;
 
