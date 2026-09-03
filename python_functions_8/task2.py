@@ -4,7 +4,7 @@ from typing import Callable, Any
 PERFORMANCE_LOG_PREFIX = "[PERF_LOG]"
 TIME_DECIMALS = 8
 
-def perfomance_logger(func: Callable) -> Callable:
+def performance_logger(func: Callable) -> Callable:
     """
     Декоратор для логирования времени выполнения функции.
 
@@ -18,11 +18,11 @@ def perfomance_logger(func: Callable) -> Callable:
         start_time = time.perf_counter()
         result = func(*args, **kwargs)
         elapsed = time.perf_counter() - start_time
-        print(f'{PERFORMANCE_LOG_PREFIX} Функция "{func.__name__}" выполнена за {elapsed:.{TIME_DECIMALS}f} секунд')
+        print(f"{PERFORMANCE_LOG_PREFIX} Функция '{func.__name__}' выполнена за {elapsed:.{TIME_DECIMALS}f} сек.")
         return result
     return wrapper
 
-@perfomance_logger
+@performance_logger
 def get_sorted_report(data: list[dict[str, str | float]]) -> list[dict[str, str | float]]:
     """
     Соритрует список словарей по ключу 'total_sales' по убыванию.

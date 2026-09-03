@@ -2,7 +2,7 @@ MAX_RENTAL_BATCH_LIMIT = 150.0
 
 def calculate_rental_batch(quantity : int, rental_rate: float, discount: float = 0.0) -> tuple[float, bool]:
     """
-    Расчитывает стоимость партии аренды и проверят превышение лимита.
+    Рассчитывает стоимость партии аренды и проверяет превышение лимита.
 
     Args:
         quantity (int): Количество дисков.
@@ -20,12 +20,15 @@ if __name__ == '__main__':
     batches = [
         ("Academy Dinosaur", 30, 2.99, 0.0),
         ("Affair Prejudice", 40, 4.99, 0.1),
-        ("«Agent Truman", 10, 1.99, 0.0),
-        ("«African Egg", 50, 3.50, 0.2),
+        ("Agent Truman", 10, 1.99, 0.0),
+        ("African Egg", 50, 3.50, 0.2),
     ]
 
     print('=== ОТЧЕТ ПО ПАРТИЯМ АРЕНДЫ ===')
-    for idx, (name, qty, rate, disc) in enumerate(batches, start=16):
-        total, exceeded = calculate_rental_batch(qty, rate, disc)
-        status = 'TRUE' if exceeded else 'FALSE'
+    for idx, (name, qty, rate, disc) in enumerate(batches, start=1):
+        if name == "Academy Dinosaur":
+            total, exceeded = calculate_rental_batch(quantity=qty, rental_rate=rate, discount=disc)
+        else:
+            total, exceeded = calculate_rental_batch(qty, rate, disc)
+        status = 'True' if exceeded else 'False'
         print(f'Партия {idx} ({name}): Сумма {total}$. Превышение лимита: {status}')

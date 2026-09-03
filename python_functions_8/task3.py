@@ -26,13 +26,13 @@ def calculate_overdue_fine(film_name: str, days_overdue: Any, fine_rate: float) 
         print(f'Фильм: "{film_name}" | Итоговый штраф: {total_fine}$ | Индекс: {return_index}')
         return total_fine, return_index
     except ValueError as e:
-        print(f'[Ошибка значения] Невозможно преобразовать дни в число для "{film_name}": {e}')
+        print(f'[ОШИБКА ЗНАЧЕНИЯ] Невозможно преобразовать дни в число для "{film_name}": {e}')
         return None
     except TypeError as e:
-        print(f'[Ошибка типа] Некорректный тип данных для "{film_name}": {e}')
+        print(f'[ОШИБКА ТИПА] Некорректный тип данных для "{film_name}": {e}')
         return None
     except ZeroDivisionError as e:
-        print(f'[Ошибка деления на ноль] Возврат без просрочки для "{film_name}": float division by zero')
+        print(f'[ОШИБКА ДЕЛЕНИЯ НА НОЛЬ] Возврат без просрочки для "{film_name}": float division by zero')
         return None
     finally:
         print('--- Проверка транзакции возврата завершена ---')
