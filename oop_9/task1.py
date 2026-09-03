@@ -1,0 +1,108 @@
+class Trainee:
+    """Учет успеваемости стажера."""
+
+    def __init__(self, name: str, surname: str, score: int=0, passing_grade: int=10) -> None:
+        self.name = name
+        self.surname = surname
+        self.passing_grade = passing_grade
+        self.__score = score
+
+    @property
+    def score(self) -> int:
+        """Геттер для приватного ___score."""
+        return self.__score
+
+    @score.setter
+    def score(self, value: int) -> None:
+        """Сеттер с валидацией."""
+        if not isinstance(value, int):
+            raise ValueError(f"Expected value of type int, got {type(value)}")
+        if value < 0:
+            raise ValueError("The score shouldn't be less than 0!")
+        self.__score = value
+
+    def do_homework(self) -> None:
+        """Increases score by 1."""
+        self.score += 1
+
+    def miss_homework(self) -> None:
+        """Decreases score by 1."""
+        self.score -= 1
+
+    def visit_lecture(self) -> None:
+        """Increases score by 1."""
+        self.score += 1
+
+    def miss_lecture(self) -> None:
+        """Decreases score by 1."""
+        self.score -= 1
+
+    def is_passing(self) -> bool:
+        """Returns True if score >= passing_grade."""
+        return self.score >= self.passing_grade
+
+class HardworkingTrainee(Trainee):
+    """Трудоголик - за домашку получает +2 балла."""
+
+    def do_homework(self) -> None:
+        """Increases score by 2."""
+        self.score += 2
+
+class AuditTrainee(Trainee):
+    """Вольнослушатель - всегда проходит курс."""
+
+    def is_passing(self) -> bool:
+        """Always returns True."""
+        return True
+
+class Cohort:
+    """Учебная группа."""
+
+    def __init__(self, title: str, trainees: list = None) -> None:
+        self.title = title
+        self.trainees = trainees if trainees is not None else []
+
+    def add_trainee(self, trainee: Trainee) -> None:
+        """Добавляем учащегося в группу."""
+        self.trainees.append(trainee)
+
+    def conduct_lecture(self) -> None:
+        """Имитируем проведение лекции."""
+        for student in self.trainees:
+            student.visit_lecture()
+
+    def get_passing_students(self) -> list:
+        """Возвращаем список учащихся"""
+        return [student for student in self.trainees if student.is_passing()]
+
+if __name__=="__main__":
+    print("=== ПРОВЕРКА УСПЕВАЕМОСТИ СТАЖЕРА ===")
+    trainee = Trainee(name="Иван", surname= "Иванов", score=9, passing_grade=10)
+    trainee.do_homework()
+    print(f"Баллы: {trainee.score}, Прошел курс: {trainee.is_passing()}")
+    trainee.miss_lecture()
+    print(f"Баллы: {trainee.score}, Прошел курс: {trainee.is_passing()}")
+    try:
+        trainee.score = -5
+    except ValueError as e:
+        print(f"Ошибка: {e}")
+
+    print("\n=== УСПЕВАЕМОСТЬ ГРУППЫ 'Python Advanced' ===")
+    std_trainee = Trainee("Алексей", "Смирнов", score=8, passing_grade=10)
+    hard_trainee = HardworkingTrainee("Елена", "Петрова", score=8, passing_grade=10)
+    audit_trainee = AuditTrainee("Дмитрий", "Cидоров", score=0, passing_grade=10)
+
+    cohort = Cohort("Python Advance")
+    cohort.add_trainee(std_trainee)
+    cohort.add_trainee(hard_trainee)
+    cohort.add_trainee(audit_trainee)
+
+    cohort.conduct_lecture()
+    hard_trainee.do_homework()
+
+    passing_students = cohort.get_passing_students()
+    for student in cohort.trainees:
+        print(f"{student.name} {student.surname} | Баллы: {student.score} | Проходит: {student.is_passing()}")
+    print("\nУспешно зачислены на следующий модуль:")
+    for student in passing_students:
+        print(f"- {student.name} {student.surname}")
